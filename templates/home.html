@@ -1,46 +1,50 @@
 <html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <title>Headlines</title>
-        <style>
-            html {
-                font-family: "Helvetica";
-                background: white;
-            }
-            body {
-                background: lightgrey;
-                max-width: 900px;
-                margin: 0 auto;
-            }
-            #header {
-                padding-top: 5px;
-                background: lightsteelblue;
-            }
-            #inner-header {
-                padding-left: 10px;
-            }
-            #main {
-                padding-left: 10px;
-            }
-            input[type="text"], select {
-                color: grey;
-                border: 1px solid lightsteelblue;
-                height: 30px;
-                line-height: 15px;
-                margin: 2px 6px 16px 0px;
-            }
-            input[type="submit"] {
-                padding: 5px 10px 5px 10px;
-                color: black;
-                background: lightsteelblue;
-                border: none;
-                box-shadow: 1px 1px 1px #4C6E91;
-            }
-            input[type="submit"]:hover {
-                background: steelblue;
-            }
-        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <!--<style>-->
+            <!--html {-->
+                <!--font-family: "Helvetica";-->
+                <!--background: white;-->
+            <!--}-->
+            <!--body {-->
+                <!--background: lightgrey;-->
+                <!--max-width: 900px;-->
+                <!--margin: 0 auto;-->
+            <!--}-->
+            <!--#header {-->
+                <!--padding-top: 5px;-->
+                <!--background: lightsteelblue;-->
+            <!--}-->
+            <!--#inner-header {-->
+                <!--padding-left: 10px;-->
+            <!--}-->
+            <!--#main {-->
+                <!--padding-left: 10px;-->
+            <!--}-->
+            <!--input[type="text"], select {-->
+                <!--color: grey;-->
+                <!--border: 1px solid lightsteelblue;-->
+                <!--height: 30px;-->
+                <!--line-height: 15px;-->
+                <!--margin: 2px 6px 16px 0px;-->
+            <!--}-->
+            <!--input[type="submit"] {-->
+                <!--padding: 5px 10px 5px 10px;-->
+                <!--color: black;-->
+                <!--background: lightsteelblue;-->
+                <!--border: none;-->
+                <!--box-shadow: 1px 1px 1px #4C6E91;-->
+            <!--}-->
+            <!--input[type="submit"]:hover {-->
+                <!--background: steelblue;-->
+            <!--}-->
+        <!--</style>-->
     </head>
 <body>
+<div class="container">
     <div id="header">
         <div id="inner-header">
             <h1> Headlines </h1>
@@ -50,36 +54,38 @@
     </div>
     <div id="main">
         <h2>Current weather</h2>
-        <form>
-            <input type="text" name="city" placeholder="Enter the city" />
-            <input type="submit" value="Submit" />
+        <form class="form-inline">
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="city" placeholder="Enter the city" />
+            <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
         </form>
         <p>City: <b>{{ weather.city }}, {{ weather.country}}</b></p>
         <p>{{ weather.description}} | {{weather.temperature}}&#8451</p>
         <h2>Currency</h2>
-        <form>
-            from: <select name="currency_from">
-                {% for currency in currencies %}
-                    <option value="{{ currency }}"
-                    {{ 'selected="selected"' if currency_from==currency}}>
-                    {{ currency }}</option>
-                {% endfor %}
-                </select>
+        <form class="form-inline">
+            <label class="mr-sm-2" for="from">from:</label>
+                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="currency_from" id="from">>
+                    {% for currency in currencies %}
+                        <option value="{{ currency }}"
+                        {{ 'selected="selected"' if currency_from==currency}}>
+                        {{ currency }}</option>
+                    {% endfor %}
+                    </select>
 
-            to: <select name="currency_to">
-              {% for currency in currencies %}
-                    <option value="{{ currency }}"
-                    {{'selected="selected"' if currency_to==currency}}>
-                    {{ currency }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Submit">
+            <label class="mr-sm-2" for="to">to:</label>
+                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="currency_to" id="to">>
+                  {% for currency in currencies %}
+                        <option value="{{ currency }}"
+                        {{'selected="selected"' if currency_to==currency}}>
+                        {{ currency }}</option>
+                    {% endfor %}
+                </select>
+                 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
         </form>
         {{ currency_from }} = {{ currency_to }} {{ rate }}
         <h2>Headlines</h2>
-        <form>
-            <input type="text" name="publication" placeholder="search" />
-            <input type="submit" value="Submit" />
+        <form class="form-inline">
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="publication" placeholder="search" />
+                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
         </form>
         {% for article in articles %}
         <b><a href="{{ article.link }}">{{ article.title }}</a></b> <br/>
@@ -88,5 +94,6 @@
             <hr />
         {% endfor %}
     </div>
+</div>
 </body>
 </html>
