@@ -77,6 +77,7 @@ def get_rates(frm, to):
     to_rate = parsed.get(to.upper())
     return to_rate / frm_rate, parsed.keys()
 
+
 def get_value_with_fallback(key):
     if request.args.get(key):
         return request.args.get(key)

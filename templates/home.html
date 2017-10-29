@@ -1,9 +1,54 @@
 <html>
     <head>
         <title>Headlines</title>
+        <style>
+            html {
+                font-family: "Helvetica";
+                background: white;
+            }
+            body {
+                background: lightgrey;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            #header {
+                padding-top: 5px;
+                background: lightsteelblue;
+            }
+            #inner-header {
+                padding-left: 10px;
+            }
+            #main {
+                padding-left: 10px;
+            }
+            input[type="text"], select {
+                color: grey;
+                border: 1px solid lightsteelblue;
+                height: 30px;
+                line-height: 15px;
+                margin: 2px 6px 16px 0px;
+            }
+            input[type="submit"] {
+                padding: 5px 10px 5px 10px;
+                color: black;
+                background: lightsteelblue;
+                border: none;
+                box-shadow: 1px 1px 1px #4C6E91;
+            }
+            input[type="submit"]:hover {
+                background: steelblue;
+            }
+        </style>
     </head>
-    <body>
-        <h1> Headlines </h1>
+<body>
+    <div id="header">
+        <div id="inner-header">
+            <h1> Headlines </h1>
+            <p>Headlines. Currency. Weather.</p>
+        </div>
+        <hr />
+    </div>
+    <div id="main">
         <h2>Current weather</h2>
         <form>
             <input type="text" name="city" placeholder="Enter the city" />
@@ -16,7 +61,7 @@
             from: <select name="currency_from">
                 {% for currency in currencies %}
                     <option value="{{ currency }}"
-                    {{'selected="selected"' if currency_from==currency}}>
+                    {{ 'selected="selected"' if currency_from==currency}}>
                     {{ currency }}</option>
                 {% endfor %}
                 </select>
@@ -29,7 +74,7 @@
                 {% endfor %}
             </select>
             <input type="submit" value="Submit">
-   </form>
+        </form>
         {{ currency_from }} = {{ currency_to }} {{ rate }}
         <h2>Headlines</h2>
         <form>
@@ -42,5 +87,6 @@
             <p>{{ article.summary }}</p> <br/>
             <hr />
         {% endfor %}
-    </body>
+    </div>
+</body>
 </html>
